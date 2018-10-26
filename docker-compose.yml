@@ -1,7 +1,7 @@
 version: '3.5'
 services:
 # ---------------------------------
-  blog:
+  eos:
     image: eosio/eos-dev:v1.3.2
     hostname: blog
     workdir: /opt/eosio/bin/
@@ -34,3 +34,32 @@ services:
      - 6379:6379
     volumes:
      - ./storage_docker/redis:/data
+# ---------------------------------
+  postgres:
+    image: postgres:latest
+    hostname: postgres
+    volumes:
+      - ./storage_docker/postgres:/data
+    ports:
+      - 54320:5432
+    networks:
+     - internal
+    environment:
+      PGDATA: /data
+      POSTGRES_USER: blog
+      POSTGRES_PASSWORD: 123654
+      POSTGRES_DB: blog
+# ---------------------------------
+  adminer:
+    image: adminer
+    hostname: admin
+    depends_on:
+      - pguauth
+      - pgudata
+      - pgurole
+    ports:
+      - 8888:8080
+    networks:
+     - internal
+networks:
+  internal:
