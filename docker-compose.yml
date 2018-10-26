@@ -1,7 +1,29 @@
 version: '3.5'
 services:
 # ---------------------------------
-  blog:
+  backend:
+    image: node
+    hostname: backend
+    working_dir: /app
+    volumes:
+     - ./backend:/app
+    environment:
+      PORT: 80
+    ports:
+     - 3000:80
+# ---------------------------------
+  frontend:
+    image: node
+    hostname: frontend
+    working_dir: /app
+    volumes:
+     - ./frontend:/app
+    environment:
+      PORT: 80
+    ports:
+     - 4000:80
+# ---------------------------------
+  eos:
     image: eosio/eos-dev:v1.3.2
     hostname: blog
     working_dir: /opt/eosio/bin/
@@ -27,10 +49,31 @@ services:
       MONGO_INITDB_ROOT_PASSWORD: toor
       MONGO_INITDB_DATABASE: blog
 # ---------------------------------
-  redis:
-    image: redis:3
-    hostname: redis
-    ports:
-     - 6379:6379
+#   redis:
+#     image: redis:3
+#     hostname: redis
+#     ports:
+#      - 6379:6379
+#     volumes:
+#      - ./storage_docker/redis:/data
+# ---------------------------------
+  postgres:
+    image: postgres
+    hostname: postgres
     volumes:
-     - ./storage_docker/redis:/data
+      - ./storage_docker/postgres:/data
+    ports:
+      - 5432:5432
+    environment:
+      PGDATA: /data
+      POSTGRES_USER: blog
+      POSTGRES_PASSWORD: golb
+      POSTGRES_DB: cyanaudit
+# ---------------------------------
+  adminer:
+    image: adminer
+    hostname: admin
+    depends_on:
+      - postgres
+    ports:
+      - 1488:8080
