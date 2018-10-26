@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-set -o errexit
+set -e # Exit immediatly if at least one of command fails
 echo "=== start ==="
 cd "$(dirname "$0")"
 if [ ! -x "$(command -v docker)" ] ||
