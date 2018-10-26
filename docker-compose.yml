@@ -8,9 +8,9 @@ services:
     volumes:
      - ./backend:/app
     environment:
-      PORT: 80
+      PORT: 3000
     ports:
-     - 3000:80
+     - 3000:3000
 # ---------------------------------
   frontend:
     image: node
@@ -18,10 +18,9 @@ services:
     working_dir: /app
     volumes:
      - ./frontend:/app
-    environment:
-      PORT: 80
     ports:
-     - 4000:80
+     - 4000:4000
+    command:   npm install --no-optional --no-shrinkwrap --no-package-lock
 # ---------------------------------
   eos:
     image: eosio/eos-dev:v1.3.2
@@ -35,7 +34,7 @@ services:
     ports:
      - 8888:8888
      - 9876:9876
-    command: /bin/bash -c "./docker/run.sh"
+    command: /bin/bash -c "/opt/eosio/bin/docker/run.sh"
 # ---------------------------------
   mongo:
     image: mongo:4.0
