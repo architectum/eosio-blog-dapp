@@ -28,7 +28,7 @@ The DApp, eosio, and MongoDB will occupy the ports 3000, 4000, 8888, 9876, and 2
 
 Clone the repository:
 ```sh
-git clone https://github.com/EOSIO/eosio-project-demux-example.git
+git clone git@github.com:architectum/eosio-blog-dapp.git
 ```
 
 The following guide assumes you are using macOS.
