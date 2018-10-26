@@ -1,7 +1,7 @@
 # EOSIO Blog DApp
 
 # Overview
-This Blog DApp demonstrates the eosio platform running a blockchain as a local, "single node", test network with a simple DApp. This DApp allows users to `create`, `edit`, `delete` and `like` blog posts. 
+This Blog DApp demonstrates the eosio platform running a blockchain as a local, "single node", test network with a simple DApp. This DApp allows users to `create`, `edit`, `delete` and `like` blog posts.
 
     This guide uses scripts, containing relevant commands, which will show you how to install, build and run the DApp, and by doing so will demonstrate:
 
@@ -42,23 +42,26 @@ git clone git@github.com:architectum/eosio-blog-dapp.git
 
 ## EOSIO & MongoDB
 
-In this section we provide a single command script to run all the commands needed to start the blockchain, deploy the smart contract, and run the MongoDB database. The React frontend and Node.js backend will be run with npm commands.
+
+```sh
+docker pull eosio/eos-dev:v1.3.2
+```
+
+    In this section we provide a single command script to run all the commands needed to start the blockchain, deploy the smart contract, and run the MongoDB database. The React frontend and Node.js backend will be run with npm commands.
+
+**First time start**
+```sh
+./run.sh
+```
 
 **To start**
 ```sh
-./quick_start.sh
+docker-compose up -d
 ```
-
-The above command will execute the following in sequence:
-
-1. `first_time_setup.sh`
-2. `start_eosio_docker.sh`
-3. `start_mongodb_docker.sh`
 
 **To stop**, execute:
 ```sh
-docker stop eosio_blog_container
-docker stop mongo_blog_container
+docker-compose down
 ```
 
 ## Frontend & Backend
@@ -92,7 +95,7 @@ In this section we will describe in detail each script used to run the blog DApp
 ./first_time_setup.sh
 ```
 
-This script will: 
+This script will:
 - Executing the above shell script and verify that Docker and Node.js are installed
 - Download the `eosio/eos-dev` docker image (which contains a full version of the eosio blockchain) and the `mongo` docker image, and removes any previous instances of these docker containers
 - Installs the node packages for the frontend React app and backend Node app
@@ -230,7 +233,7 @@ eosio-project-demux-example // project directory
 │   │   │   ├── block-index-state.model.js // defines the mongoose BlockIndexState model to update the last processed blocks for Demux
 │   │   │   ├── index.js
 │   │   │   └── post.model.js // defines the mongoose Post model to store blog posts
-│   │   ├── services // services 
+│   │   ├── services // services
 │   │   │   ├── demux // demux implementation
 │   │   │   │   ├── effects // demux effects implementations - side effects outside of the blockchain that should be triggered when blockchain events related to our smart contract are read
 │   │   │   │   ├── updaters // demux updaters implementations - updates the mongodb database when blockchain events related to our smart contract are read
