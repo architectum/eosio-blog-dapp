@@ -1,7 +1,9 @@
-# EOSIO Demux Example
+# EOSIO Blog DApp
 
 # Overview
-This Blog DApp demonstrates the eosio platform running a blockchain as a local single node test net with a simple DApp. This DApp allows users to create, edit, delete and like blog posts. This guide uses scripts, containing relevant commands, which will show you how to install, build and run the DApp, and by doing so will demonstrate:
+This Blog DApp demonstrates the eosio platform running a blockchain as a local, "single node", test network with a simple DApp. This DApp allows users to `create`, `edit`, `delete` and `like` blog posts. 
+
+    This guide uses scripts, containing relevant commands, which will show you how to install, build and run the DApp, and by doing so will demonstrate:
 
 - Downloading and running eosio in docker
 - Managing your docker container
@@ -21,17 +23,20 @@ The sample DApp demonstrates how to use [Demux](https://github.com/EOSIO/demux-j
 
 Make sure Docker and Node.js are installed
 
-* Install Docker: https://docs.docker.com/docker-for-mac/install/
-* Install Node.js: https://nodejs.org/en/
+* Install Docker: https://docs.docker.com/install/
+* Install Node.js: https://nodejs.org/
 
-The DApp, eosio, and MongoDB will occupy the ports 3000, 4000, 8888, 9876, and 27017. Make sure nothing else is already running on these ports.
+The DApp, eosio, and MongoDB will occupy the ports `3000`, `4000`, `8888`, `9876`, and `27017`. Make sure nothing else is already running on these ports.
 
 Clone the repository:
 ```sh
 git clone git@github.com:architectum/eosio-blog-dapp.git
 ```
 
-The following guide assumes you are using macOS.
+**⚠️All the scripts running in Bash environment (for Windows users "Git Bash" recommended)⚠️**
+
+    The following guide assumes you are using bash environment.
+
 
 # Quick start - Run the DApp
 
