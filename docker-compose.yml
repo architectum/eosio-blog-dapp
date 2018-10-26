@@ -1,0 +1,36 @@
+version: '3.5'
+services:
+# ---------------------------------
+  blog:
+    image: eosio/eos-dev:v1.3.2
+    hostname: blog
+    workdir: /opt/eosio/bin/
+    volumes:
+     - ./eosio_docker/docker:/opt/eosio/bin/docker
+     - ./eosio_docker/contracts:/opt/eosio/bin/contracts
+     - ./eosio_docker/scripts:/opt/eosio/bin/scripts
+     - ./eosio_docker/data:/mnt/dev/data
+    ports:
+     - 8888:8888
+     - 9876:9876
+    command: /bin/bash -c "./docker/run.sh"
+# ---------------------------------
+  mongo:
+    image: mongo:4.0
+    hostname: mongo
+    ports:
+     - 27017:27017
+    volumes:
+     - ./storage_docker/mongo:/data/db
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: toor
+      MONGO_INITDB_DATABASE: blog
+# ---------------------------------
+  redis:
+    image: redis:3
+    hostname: redis
+    ports:
+     - 6379:6379
+    volumes:
+     - ./storage_docker/redis:/data
