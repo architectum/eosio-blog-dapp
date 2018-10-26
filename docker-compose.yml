@@ -4,7 +4,7 @@ services:
   blog:
     image: eosio/eos-dev:v1.3.2
     hostname: blog
-    workdir: /opt/eosio/bin/
+    working_dir: /opt/eosio/bin/
     volumes:
      - ./eosio_docker/docker:/opt/eosio/bin/docker
      - ./eosio_docker/contracts:/opt/eosio/bin/contracts
